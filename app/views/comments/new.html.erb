@@ -1,0 +1,11 @@
+<section class='blogs'>
+    <h2>Blogs</h2>
+<%= form_for(blog) do |f| %>
+  <p>
+  <%= f.label :comment %>
+  <%= f.text_field :comment %>
+  </p>
+  <%= f.submit %>
+<% end %>
+
+</section>

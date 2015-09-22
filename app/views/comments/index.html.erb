@@ -1,0 +1,11 @@
+<header id='top'>
+      <h1 class='banner'>Welcome to the Blogger </h1>
+    </header>
+
+  <section class='comments'>
+    <h2>Blogs</h2>
+    <% comments.each do |blog| %>
+      <a href='/comments/<%= comment.id %>/comments'><%= comment.body %></a>
+      <a href="/comments/new">Add post</a>
+    <% end %>
+  </section>
