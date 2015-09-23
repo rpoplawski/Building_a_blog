@@ -18,7 +18,6 @@ body {
   font-family:  "Comic Sans MS", cursive, sans-serif;
 }
 
-
 a {
   color: #FF9900;
 }
@@ -47,6 +46,4 @@ body {
     border: 2px dotted #000;
 }
 
-p.inline {
-    display: inline;
-}
+
