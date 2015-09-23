@@ -1,43 +1,48 @@
 class CommentsController < ApplicationController
 
-def index
+  def index
       #render text: "params : #{params.inspect}"
-      comments = Comment.all
-      respond_to do |f|
-      f.html do
-        render template: 'comments/index.html.erb', locals: { comments: comments }
+        render template: 'comments/index.html.erb', locals: { comments: Comment.all}
     end
-      f.json do
-        render json: comments.to_json, status: 200
-        end
-      end
-    end
-
 
   def new
-      #render text: "params : #{params.inspect}"
-      render json: Comment.new
-    end
+    #render text: "params : #{params.inspect}"
+    user_options = User.all.map { |u| [u.name, u.id] }
+    render tempate: 'comments/new.html.erb', locals: {
+      comment: Comment.new,
+      user_options: user_options
+    }
+  end
 
-    def show
-      #render text: "params : #{params.inspect}"
-      comment = Comment.find(params[:id])
-      if params[:include_comment]
-         render template: 'comment/show.html.erb', locals: { comment: comment }
-      else
-         render template: 'comment/error.html.erb', locals: { comment: comment }
-      end
+  def show
+    #render text: "params : #{params.inspect}"
+    comment = Comment.find(params[:id])
+    if params[:include_comment]
+       render template: 'comment/show.html.erb', locals: { comment: comment }
+    else
+       render template: 'comment/error.html.erb', locals: { comment: comment }
     end
+  end
 
   def create
-    if params[:body].nil? || params[:body].empty?
-      render template: '/comment/error.html.erb', locals: { comment: comment }
+    comment = Comment.new
+    comment.message   = params.fetch(:comment).fetch(:body)
+    comment.published = false
+    if comment.save
+      redirect_to comment_path(comment)
     else
-      comment = Blog.new
-      comment.name = params[:body]
-      comment.save
-      render template: '/comment/create.html.erb', locals: { comment: comment}
+      redirect_to comments_path
     end
+  end
+
+  def update
+  end
+
+  def destroy
+    if Comment.exists?(params[:id])
+       Comment.destroy(params[:id])
+    end
+    redirect_to comments_path
   end
 end
 
@@ -51,3 +56,14 @@ end
 #      render json: { error_msg: 'Record Not Found!', id: params[:id] }.to_json, status: 404
 #    end
 #  end
+
+
+ #  if params[:body].nil? || params[:body].empty?
+ #     render template: '/comment/error.html.erb', locals: { comment: comment }
+ #   else
+ #     comment = Comment.new
+ #     comment.name = params[:body]
+ #     comment.save
+ #     render template: '/comment/create.html.erb', locals: { comment: comment}
+ #   end
+ # end

@@ -29,6 +29,7 @@ class BlogsController < ApplicationController
       end
     end
 
+
   def create
     if params[:message].nil? || params[:message].empty?
       render template: '/blog/error.html.erb', locals: { blog: blog }

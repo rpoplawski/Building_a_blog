@@ -22,20 +22,12 @@ a {
   color: #FF9900;
 }
 
-h1 {
-  color: #CC6633;
-}
-
-h2 {
+h1, h2 {
   color: #33FFFF;
 }
 
-h1 {
+h1, h2 {
     background-color: #FF9900;
-}
-
-h2  {
-    background-color: #9900FF;
 }
 
 body {
@@ -45,5 +37,3 @@ body {
 body {
     border: 2px dotted #000;
 }
-
-
