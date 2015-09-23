@@ -1,0 +1,10 @@
+  <header id='top'>
+      <h1 class='banner'>Welcome to the Blogger </h1>
+    </header>
+  <section class='posts'>
+    <h2>posts</h2>
+    <% posts.each do |post| %>
+      <p><a href='/posts/<%= post.id %>/posts'><%= post.body %></a>
+      <a href="/posts/new">Add post</a></p>
+    <% end %>
+  </section>

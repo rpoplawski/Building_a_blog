@@ -3,8 +3,8 @@
     </header>
   <section class='comments'>
     <h2>Comments</h2>
-    <% comments.each do |blog| %>
-      <a href='/comments/<%= comment.id %>/comments'><%= comment.body %></a>
-      <a href="/comments/new">Add post</a>
+    <% comments.each do |comment| %>
+     <p><a href='/comments/<%= comment.id %>/comments'><%= comment.message %></a>
+      <a href="/posts/new">Add post</a></p>
     <% end %>
   </section>
