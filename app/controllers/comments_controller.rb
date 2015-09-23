@@ -51,6 +51,3 @@ end
 #      render json: { error_msg: 'Record Not Found!', id: params[:id] }.to_json, status: 404
 #    end
 #  end
-
-
-end
